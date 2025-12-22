@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Swastik Chemical India</title>
+  <link rel="icon" type="image/jpg" href="5.jpg" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #fdf7f7;
+      color: #3d1c1c;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .header {
+      background: linear-gradient(to right, #800000, #a52a2a);
+      padding: 20px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+      position: relative;
+    }
+
+    .logo-text {
+      font-size: 28px;
+      color: #fff;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-list li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      position: relative;
+    }
+
+    .nav-list li a::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #ffd6d6;
+      transition: width 0.3s ease;
+    }
+
+    .nav-list li a:hover::after {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      color: white;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-list {
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        right: 30px;
+        background-color: #800000;
+        width: 200px;
+        padding: 15px;
+        gap: 15px;
+        display: none;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        border-radius: 10px;
+      }
+
+      .nav-list.show {
+        display: flex;
+      }
+    }
+
+    main {
+      flex: 1;
+      padding: 40px 20px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .footer {
+      background-color: #4d0000;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+    }
+
+    .product-grid > div {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .product-grid img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .product-grid h3 {
+      color: #800000;
+      margin: 15px 0;
+    }
+
+    .product-grid p {
+      font-size: 14px;
+    }
+
+    .product-grid a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #800000;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    .product-grid a:hover {
+      background-color: #a52a2a;
+    }
+
+    h1 {
+      text-align: center;
+      color: #800000;
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <a href="swastikchemical.html" style="text-decoration: none;">
+      <div class="logo-text">Swastik Chemical India</div>
+    </a>
+    <nav class="navbar">
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <ul class="nav-list" id="navList">
+        <li><a href="swastikchemical.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h1>Our Featured Products</h1>
+      <div class="product-grid">
+        <!-- Repeat product blocks below as needed -->
+        <div>
+          <img src="sporax -75.jpg" alt="Sperox BP-75" />
+          <h3>Sperox BP-75</h3>
+          <p>Stable benzoyl peroxide powder with enhanced safety features.</p>
+          <a href="sperox-bp75.html">View Details</a>
+        </div>
+        <div>
+          <img src="sperox- 50.jpg" alt="Sperox BP-50" />
+          <h3>Sperox BP-50</h3>
+          <p>Specialized compound used in chemical processes and coatings.</p>
+          <a href="sperox-bp50.html">View Details</a>
+        </div>
+        <div>
+          <img src="sperox k-7 .jpg" alt="Sperox K-7" />
+          <h3>Sperox K-7</h3>
+          <p>Specialized compound used in chemical processes and coatings.</p>
+          <a href="sperox-k7.html">View Details</a>
+        </div>
+        <div>
+          <img src="Sperox K-8.jpg" alt="Sperox K-8" />
+          <h3>Sperox K-8</h3>
+          <p>Designed for innovation in industrial research and coatings.</p>
+          <a href="sperox-k8.html">View Details</a>
+        </div>
+        <div>
+          <img src="Sperox K-9 .jpg" alt="Sperox K-9" />
+          <h3>Sperox K-9</h3>
+          <p>Veterinary-grade formula for effective control of fleas and ticks in pets.</p>
+          <a href="sperox-k9.html">View Details</a>
+        </div>
+        <div>
+          <img src="Sperox TBH-72 .jpg" alt="Sperox TBH-72" />
+          <h3>Sperox TBH-72</h3>
+          <p>Eliminates external parasites and maintains animal hygiene.</p>
+          <a href="sperox-tbh72.html">View Details</a>
+        </div>
+        <div>
+          <img src="Sperox TBH-50 .jpg" alt="Sperox TBH-50" />
+          <h3>Sperox TBH-50</h3>
+          <p>Parasitic treatment for animal care and safety.</p>
+          <a href="sperox-tbh50.html">View Details</a>
+        </div>
+        <div>
+          <img src="Sperox TBH-80.jpg" alt="Sperox TBH-80" />
+          <h3>Sperox TBH-80</h3>
+          <p>Powerful antiparasitic chemical used in veterinary treatment.</p>
+          <a href="sperox-tbh80.html">View Details</a>
+        </div>
+        <div>
+          <img src="Sperox TBH-98.jpg" alt="Sperox TBH-98" />
+          <h3>Sperox TBH-98</h3>
+          <p>Premium parasite-control solution for veterinary and livestock use.</p>
+          <a href="sperox-tbh98.html">View Details</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Swastik Chemical India. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('navList');
+      nav.classList.toggle('show');
+    }
+  </script>
+</body>
+</html>

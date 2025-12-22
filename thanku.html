@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swastik Chemical India</title>
+  <link rel="icon" type="image/jpg" href="5.jpg" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      background-color: #fdf7f7;
+      color: #3d1c1c;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      background: linear-gradient(to right, #800000, #a52a2a);
+      padding: 20px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .logo-text {
+      font-size: 28px;
+      color: #fff;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .navbar .nav-list {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-list li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-list li a::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #ffd6d6;
+      transition: width 0.3s ease;
+    }
+
+    .nav-list li a:hover {
+      color: #ffd6d6;
+    }
+
+    .nav-list li a:hover::after {
+      width: 100%;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .message-box {
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      animation: fadeIn 0.8s ease-out;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .message-box h2 {
+      font-size: 22px;
+      margin-bottom: 15px;
+      color: #800000;
+    }
+
+    .button {
+      margin-top: 25px;
+      padding: 12px 24px;
+      background-color: #800000;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #a52a2a;
+    }
+
+    .footer {
+      background-color: #4d0000;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar .nav-list {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .logo-text {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      .message-box {
+        padding: 25px 20px;
+      }
+
+      .message-box h2 {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <a href="swastikchemical.html" style="text-decoration: none;">
+      <div class="logo-text">Swastik Chemical India</div>
+    </a>
+    <nav class="navbar">
+      <ul class="nav-list">
+        <li><a href="swastikchemical.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+  <div class="message-box">
+    <h2>Thank You for Your Valuable Feedback!</h2>
+    <p>We truly appreciate you taking the time to share your thoughts with us.</p>
+    <p>Your response has been successfully recorded and will help us serve you better.</p>
+    <p>At Swastik Chemical India, we’re committed to providing you with high-quality products and an excellent customer experience.</p>
+    <p>We look forward to doing business with you again!</p>
+    
+    <form action="swastikchemical.html">
+      <button class="button">Back to Home</button>
+    </form>
+  </div>
+</main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Swastik Chemical India. All rights reserved.</p>
+  </footer>
+</body>
+
+</html>
