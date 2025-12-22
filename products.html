@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Swastik Chemical India - Advanced Organic Peroxides and Polymerization Solutions.">
 <title>Products – Swastik Chemical India</title>
-  <link rel="icon" type="image/jpg" href="5.jpg" />
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
@@ -66,7 +65,7 @@ h1, h2, h3, h4, .btn { font-family: 'Montserrat', sans-serif; }
   padding: 15px 5%; display: flex; justify-content: space-between; align-items: center;
   box-shadow: 0 2px 20px rgba(0,0,0,0.2); border-bottom: 1px solid rgba(255,255,255,0.1);
 }
-.logo-text { color: #fff; font-size: 24px; font-weight: 700; text-decoration: none; }
+.logo-text { color: #fff; font-size: 24px; font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: -0.5px; }
 .navbar ul { list-style: none; display: flex; gap: 30px; }
 .navbar a { color: rgba(255,255,255,0.85); text-decoration: none; font-weight: 600; font-size: 0.95rem; position: relative; transition: 0.3s; }
 .navbar a:hover, .navbar a.active { color: var(--accent); }
@@ -479,7 +478,8 @@ function openModal(category) {
   
   products[category].items.forEach((p, i) => {
     const a = document.createElement("a");
-    a.href = p.link;
+a.onclick = () => openCenteredWindow(p.link);
+
     a.className = "product-item";
     a.style.animationDelay = `${i * 0.08}s`;
     a.innerHTML = `${p.name} <i class="fas fa-chevron-right"></i>`;
@@ -525,8 +525,29 @@ document.querySelectorAll('.category-card').forEach(card => {
     card.style.transform = 'translateY(0)';
   });
 });
+function openCenteredWindow(url, width = 1100, height = 750) {
+  const left = (window.screen.width - width) / 2;
+  const top = (window.screen.height - height) / 2;
+
+  window.open(
+    url,
+    "_blank",
+    `
+      width=${width},
+      height=${height},
+      left=${left},
+      top=${top},
+      resizable=yes,
+      scrollbars=yes,
+      toolbar=no,
+      menubar=no,
+      location=no,
+      status=no
+    `
+  );
+}
+
 </script>
 
 </body>
 </html>
-
