@@ -1,190 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sperox TBH-50 | Swastik Chemical India</title>
-  <link rel="icon" type="image/jpg" href="5.jpg"/>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f9f9f9;
-      color: #333;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sperox TBH-50 Specification</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
-    header {
-      background: linear-gradient(to right, #800000, #a52a2a);
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: white;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
+<style>
+/* ================= VARIABLES ================= */
+:root {
+  --primary: #800000;       /* Maroon */
+  --primary-dark: #4d0000;
+  --accent: #d4af37;        /* Gold */
+  --bg-light: #fdfbfb;
+  --text-dark: #2c2c2c;
+  --text-gray: #666;
+  --shadow: 0 10px 30px rgba(0,0,0,0.08);
+  --radius: 12px;
+}
 
-    .logo {
-      font-size: 26px;
-      font-weight: bold;
-    }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 25px;
-      font-weight: bold;
-      position: relative;
-    }
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
 
-    nav a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -5px;
-      width: 0%;
-      height: 2px;
-      background: #ffd6d6;
-      transition: width 0.3s ease;
-    }
+h1, h2, h3, .btn { font-family: 'Montserrat', sans-serif; }
 
-    nav a:hover::after {
-      width: 100%;
-    }
+/* ================= PRODUCT LAYOUT ================= */
+.container {
+  max-width: 900px; 
+  width: 100%;
+  background: #fff;
+  padding: 50px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border-top: 6px solid var(--primary);
+}
 
-    .product-container {
-      max-width: 1200px;
-      margin: 50px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 4px 30px rgba(0,0,0,0.05);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-      align-items: center;
-      animation: fadeIn 1s ease-out;
-    }
+/* Details Section */
+.product-header {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
 
-    .product-image {
-      flex: 1 1 400px;
-    }
+.product-title h1 {
+  font-size: 2.5rem; color: var(--primary); margin-bottom: 5px;
+}
+.subtitle {
+  font-size: 1.1rem; color: var(--text-gray); font-weight: 600;
+}
 
-    .product-image img {
-      width: 100%;
-      border-radius: 16px;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-    }
+.badge {
+  background: var(--accent); color: #fff; padding: 8px 16px;
+  border-radius: 50px; font-weight: 700; font-size: 0.85rem;
+  font-family: 'Montserrat', sans-serif; letter-spacing: 0.5px;
+}
 
-    .product-details {
-      flex: 1 1 400px;
-    }
+.description { margin-bottom: 30px; font-size: 1.05rem; color: #444; }
 
-    .product-details h1 {
-      color: #800000;
-      font-size: 32px;
-      margin-bottom: 20px;
-    }
+/* Table Styling */
+.specs-table {
+  width: 100%; border-collapse: collapse; margin-bottom: 40px;
+  border-radius: 8px; overflow: hidden; border: 1px solid #eee;
+}
+.specs-table th, .specs-table td {
+  padding: 15px 20px; text-align: left; border-bottom: 1px solid #eee;
+}
+.specs-table th { background: #f8f8f8; color: var(--primary); width: 35%; font-weight: 700; }
+.specs-table tr:last-child td, .specs-table tr:last-child th { border-bottom: none; }
 
-    .product-details p {
-      font-size: 16px;
-      margin-bottom: 15px;
-    }
+/* Buttons */
+.btn-group { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 50px; }
 
-    .product-details ul {
-      list-style: disc;
-      padding-left: 20px;
-      margin-bottom: 20px;
-    }
+.btn {
+  padding: 12px 24px; border-radius: 6px; text-decoration: none;
+  font-weight: 600; transition: 0.3s; cursor: pointer; border: none; font-size: 0.95rem;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(128,0,0,0.2); }
 
-    .cta-button {
-      padding: 12px 24px;
-      background-color: #800000;
-      color: white;
-      font-size: 16px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      transition: background-color 0.3s;
-    }
+.btn-secondary { background: #fff; color: var(--text-dark); border: 1px solid #ccc; }
+.btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
 
-    .cta-button:hover {
-      background-color: #a52a2a;
-    }
+/* ================= MSDS FORM SECTION ================= */
+.msds-section {
+  background: #fdfbfb;
+  padding: 30px; 
+  border-radius: 8px;
+  border: 1px solid #eee;
+  border-left: 4px solid var(--accent);
+}
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #4d0000;
-      color: white;
-      font-size: 14px;
-      margin-top: 50px;
-    }
+.msds-header { margin-bottom: 20px; }
+.msds-header h3 { color: var(--primary); font-size: 1.3rem; margin-bottom: 5px; }
+.msds-header p { font-size: 0.9rem; color: #666; }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+.form-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;
+  align-items: end;
+}
 
-    @media (max-width: 768px) {
-      .product-container {
-        flex-direction: column;
-        padding: 20px;
-      }
-    }
-.back-button {
-      display: inline-block;
-      margin-top: 20px;
-      text-decoration: none;
-      background: #ccc;
-      color: #333;
-      padding: 8px 16px;
-      border-radius: 6px;
-      transition: background 0.3s ease;
-    }
-    .back-button:hover {
-      background: #bbb;
-    }
-  </style>
+.form-group input {
+  width: 100%; padding: 12px 15px; border: 1px solid #ddd;
+  border-radius: 6px; font-family: 'Open Sans', sans-serif; font-size: 0.9rem;
+  transition: 0.3s;
+}
+.form-group input:focus {
+  outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(128,0,0,0.1);
+}
+
+#submitBtn {
+  width: 100%; height: 46px; /* Match input height */
+  justify-content: center;
+}
+
+.status-msg { margin-top: 15px; font-weight: 600; font-size: 0.9rem; display: none; }
+.status-msg.success { color: green; }
+.status-msg.error { color: #d32f2f; }
+
+@media (max-width: 768px) {
+  .container { padding: 30px 20px; }
+  .product-header { flex-direction: column; gap: 10px; }
+  .product-title h1 { font-size: 2rem; }
+  .form-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
-  <header>
-    <div class="logo">Swastik Chemical India</div>
-    <nav>
-      <a href="swastikchemical.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="products.html">Products</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
 
-  <section class="product-container">
-    <div class="product-image">
-      <img src="sperox tbh-50 .jpg" alt="Sperox TBH-50" />
-    </div>
-    <div class="product-details">
+<div class="container">
+  
+  <div class="product-header">
+    <div class="product-title">
       <h1>Sperox TBH-50</h1>
-      <p><strong>Type:</strong> Tert-Butyl Hydroperoxide Compound</p>
-      <p><strong>Overview:</strong> A powerful oxidizing agent used for controlled polymerization and curing processes in coatings and adhesives.</p>
-      <ul>
-        <li>High stability in formulations</li>
-        <li>Effective in radical polymerization</li>
-        <li>Enhanced shelf life</li>
-      </ul>
-      <a href="contact.html" class="cta-button">Request Quote</a>
-      <a href="products.html" class="back-button">← Back to Products</a>
+      <span class="subtitle">Tert-Butyl Hydroperoxide (50%)</span>
     </div>
-  </section>
+    <span class="badge">LIQUID SOLUTION</span>
+  </div>
 
-  <footer>
-    &copy; 2025 Swastik Chemical India. All rights reserved.
-  </footer>
+  <p class="description">
+    Sperox TBH-50 is a clear, volatile liquid solution of Tert-Butyl Hydroperoxide (TBHP). It acts as a powerful oxidizing agent and an efficient polymerization initiator for acrylic emulsions and other radical polymerization processes. It is widely used in the synthesis of polymers and as a curing agent for adhesives.
+  </p>
+
+  <table class="specs-table">
+    <tr>
+      <th>Chemical Name</th>
+      <td>Tert-Butyl Hydroperoxide (TBHP)</td>
+    </tr>
+    <tr>
+      <th>Concentration</th>
+      <td>50% (Aqueous Solution)</td>
+    </tr>
+    <tr>
+      <th>Appearance</th>
+      <td>Clear, Colorless Liquid</td>
+    </tr>
+    <tr>
+      <th>Active Oxygen</th>
+      <td>~8.9%</td>
+    </tr>
+    <tr>
+      <th>Key Benefits</th>
+      <td>High Thermal Stability, Controlled Reaction Rates</td>
+    </tr>
+    <tr>
+      <th>Applications</th>
+      <td>Emulsion Polymerization, Styrene-Acrylics, Oxidation Reactions</td>
+    </tr>
+  </table>
+
+  <div class="btn-group">
+    <a href="contact.html" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Get Quote</a>
+    <a href="products.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back to Products</a>
+  </div>
+
+  <div class="msds-section">
+    <div class="msds-header">
+      <h3><i class="fas fa-file-pdf"></i> Request MSDS</h3>
+      <p>Enter your details to receive the Material Safety Data Sheet via email.</p>
+    </div>
+
+    <form id="msdsForm">
+      <input type="hidden" name="product_name" value="Sperox TBH-50">
+      
+      <div class="form-grid">
+        <div class="form-group">
+          <input type="text" name="user_name" placeholder="Full Name" required>
+        </div>
+        <div class="form-group">
+          <input type="email" name="user_email" placeholder="Business Email" required>
+        </div>
+        <div class="form-group">
+          <input type="text" name="company" placeholder="Company Name" required>
+        </div>
+        <button type="submit" class="btn btn-primary" id="submitBtn">Send Request</button>
+      </div>
+      <div id="statusMessage" class="status-msg"></div>
+    </form>
+  </div>
+
+</div>
+
+<script>
+  // 1. Initialize EmailJS
+  (function() {
+      // Your Public Key
+      emailjs.init("wsBfMwBeMeDDystXG"); 
+  })();
+
+  // 2. Handle Form Submission
+  document.getElementById('msdsForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Stop page reload
+
+    const btn = document.getElementById('submitBtn');
+    const status = document.getElementById('statusMessage');
+    
+    // Change button state
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    btn.disabled = true;
+
+    // Send Email
+    emailjs.sendForm('service_hulknsd', 'template_47pcygc', this)
+      .then(function() {
+        // Success
+        btn.innerHTML = 'Sent Successfully';
+        btn.style.background = '#28a745'; // Green
+        status.textContent = "Request sent! Please check your email inbox.";
+        status.className = "status-msg success";
+        status.style.display = "block";
+        document.getElementById('msdsForm').reset();
+        
+        setTimeout(() => {
+            btn.innerHTML = 'Send Request';
+            btn.disabled = false;
+            btn.style.background = ''; // Reset to default
+        }, 4000);
+
+      }, function(error) {
+        // Error
+        console.log('FAILED...', error);
+        btn.innerHTML = 'Try Again';
+        btn.disabled = false;
+        status.textContent = "Failed to send. Please check your connection.";
+        status.className = "status-msg error";
+        status.style.display = "block";
+      });
+  });
+</script>
+
 </body>
 </html>
