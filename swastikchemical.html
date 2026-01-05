@@ -4,19 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Swastik Chemical India - Essential. Responsible. Chemistry.</title>
-  <link rel="icon" type="image/jpg" href="5.jpg" />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <style>
 /* ================= VARIABLES & RESET ================= */
 :root {
   --primary: #800000;       /* Deep Maroon */
-  --primary-dark: #4d0000;  /* Darker Maroon */
-  --accent: #d4af37;        /* Gold/Bronze for Heritage feel */
-  --bg-light: #fdfbfb;
-  --text-dark: #2c2c2c;
-  --text-light: #f0f0f0;
-  --shadow: 0 10px 30px rgba(128,0,0,0.1);
+  --primary-light: #a52a2a; /* Lighter Maroon */
+  --accent: #d4af37;        /* Gold */
+  --bg-body: #ffffff;       /* Pure White */
+  --bg-light: #f8f9fa;      /* Very Light Grey */
+  --text-main: #333333;
+  --text-light: #666666;
+  --shadow-soft: 0 10px 40px rgba(0,0,0,0.08);
+  --shadow-nav: 0 4px 20px rgba(0,0,0,0.05);
+  --nav-height: 90px; /* Increased height for bigger logo */
 }
 
 * {
@@ -27,448 +30,339 @@
 
 body {
   font-family: 'Open Sans', sans-serif;
-  background: var(--bg-light);
-  color: var(--text-dark);
+  background: var(--bg-body);
+  color: var(--text-main);
   line-height: 1.7;
   overflow-x: hidden;
+  padding-top: var(--nav-height); 
 }
 
-h1, h2, h3, .nav-link, .btn {
+h1, h2, h3, h4, .nav-link, .btn, .brand-text {
   font-family: 'Montserrat', sans-serif;
 }
 
-/* ================= HEADER ================= */
+a { text-decoration: none; transition: 0.3s; }
+
+/* ================= HEADER (WHITE THEME) ================= */
 .pro-header {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
-  padding: 15px 5%;
+  height: var(--nav-height);
+  padding: 0 5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(128, 0, 0, 0.95);
+  background: rgba(255, 255, 255, 0.98); 
   backdrop-filter: blur(10px);
   z-index: 2000;
-  box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+  box-shadow: var(--shadow-nav);
+  transition: all 0.3s ease;
 }
 
-.brand-name {
-  font-size: 25px;
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* BIGGER LOGO STYLES */
+.logo-img {
+  height: 75px; /* Increased from 50px */
+  width: auto;
+  display: block;
+  transition: height 0.3s ease;
+}
+
+.brand-text {
+  font-size: 24px;
   font-weight: 700;
-  color: #fff;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--primary);
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+}
+
+/* DESKTOP NAV */
+.pro-nav {
+  display: flex;
+  align-items: center;
 }
 
 .pro-nav a {
-  margin-left: 30px;
-  color: rgba(255,255,255,0.9);
-  font-weight: 650;
-  text-decoration: none;
-  position: relative;
+  margin-left: 35px;
+  color: #444;
+  font-weight: 600;
   font-size: 0.95rem;
-  transition: 0.3s;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-transform: uppercase;
+  position: relative;
 }
 
-.pro-nav a:hover { color: var(--accent); }
+.pro-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s;
+}
 
+.pro-nav a:hover, .pro-nav a.active { color: var(--primary); }
+.pro-nav a:hover::after, .pro-nav a.active::after { width: 100%; }
+
+/* HAMBURGER MENU BUTTON */
 .menu-btn {
-  display: none;
-  font-size: 28px;
+  display: none; 
+  cursor: pointer;
   background: none;
   border: none;
-  color: #fff;
-  cursor: pointer;
+  width: 30px;
+  height: 24px;
+  position: relative;
+  z-index: 2001;
 }
+
+.menu-btn span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--primary);
+  position: absolute;
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-btn span:nth-child(1) { top: 0; }
+.menu-btn span:nth-child(2) { top: 10px; }
+.menu-btn span:nth-child(3) { top: 20px; }
+
+/* Hamburger Transform to Cross */
+.menu-btn.open span:nth-child(1) { top: 10px; transform: rotate(45deg); }
+.menu-btn.open span:nth-child(2) { opacity: 0; }
+.menu-btn.open span:nth-child(3) { top: 10px; transform: rotate(-45deg); }
+
+/* MOBILE NAV DRAWER - SLIDE FROM TOP */
+.mobile-nav {
+  position: fixed;
+  top: -100%; /* Start completely hidden above the screen */
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #fff;
+  z-index: 1999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: top 0.5s cubic-bezier(0.77, 0, 0.175, 1); /* Animated Top property */
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.mobile-nav.active {
+  top: 0; /* Slide down to cover screen */
+}
+
+.mobile-nav a {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 15px 0;
+  font-weight: 700;
+  position: relative;
+  opacity: 0; /* Fade in effect for links */
+  transform: translateY(-20px);
+  transition: 0.3s ease 0.1s;
+}
+
+/* Staggered animation for menu items */
+.mobile-nav.active a { opacity: 1; transform: translateY(0); }
+.mobile-nav.active a:nth-child(1) { transition-delay: 0.2s; }
+.mobile-nav.active a:nth-child(2) { transition-delay: 0.3s; }
+.mobile-nav.active a:nth-child(3) { transition-delay: 0.4s; }
+.mobile-nav.active a:nth-child(4) { transition-delay: 0.5s; }
+
+.mobile-nav a:hover { color: var(--primary); }
 
 /* ================= HERO SECTION ================= */
 .hero-pro {
-  height: 100vh;
+  height: calc(100vh - var(--nav-height));
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
+  margin-top: 0; 
 }
 
-.hero-media {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
+.hero-media { position: absolute; inset: 0; z-index: 0; }
 .hero-slide {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transform: scale(1.1);
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: 0; transform: scale(1.1);
   transition: opacity 1.5s ease, transform 6s ease;
 }
-
-.hero-slide.active {
-  opacity: 1;
-  transform: scale(1);
-}
+.hero-slide.active { opacity: 1; transform: scale(1); }
 
 .hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(128,0,0,0.6) 100%);
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(128,0,0,0.4) 100%);
   z-index: 1;
 }
 
 .hero-content-pro {
-  position: relative;
-  z-index: 2;
-  color: #fff;
-  max-width: 800px;
-  padding-left: 5%;
+  position: relative; z-index: 2; color: #fff;
+  max-width: 900px; padding-left: 5%;
   animation: slideFade 1.2s ease forwards;
 }
 
 .hero-title {
-  font-size: 3.5rem;
-  font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: 20px;
+  font-size: 4rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
 .hero-subtitle {
-  font-size: 1.3rem;
-  opacity: 0.9;
-  margin-bottom: 30px;
-  border-left: 4px solid var(--accent);
-  padding-left: 15px;
+  font-size: 1.4rem; opacity: 0.95; margin-bottom: 35px;
+  border-left: 5px solid var(--accent); padding-left: 20px;
+  font-weight: 400;
 }
 
 .hero-btn {
-  padding: 14px 35px;
-  border-radius: 4px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  display: inline-block;
-  margin-right: 15px;
-  text-transform: uppercase;
-  font-size: 0.9rem;
+  padding: 16px 40px; border-radius: 50px; font-weight: 700;
+  text-decoration: none; transition: all 0.3s ease;
+  display: inline-block; margin-right: 15px;
+  text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;
 }
 
 .hero-btn.primary {
-  background: var(--primary);
-  color: #fff;
-  border: 2px solid var(--primary);
+  background: var(--primary); color: #fff; border: 2px solid var(--primary);
+  box-shadow: 0 5px 15px rgba(128, 0, 0, 0.4);
 }
-
-.hero-btn.primary:hover {
-  background: var(--primary-dark);
-  border-color: var(--primary-dark);
-}
+.hero-btn.primary:hover { background: #600000; border-color: #600000; transform: translateY(-3px); }
 
 .hero-btn.secondary {
-  border: 2px solid #fff;
-  color: #fff;
+  background: rgba(255,255,255,0.1); color: #fff; border: 2px solid #fff;
+  backdrop-filter: blur(5px);
 }
-
-.hero-btn.secondary:hover {
-  background: #fff;
-  color: var(--primary);
-}
+.hero-btn.secondary:hover { background: #fff; color: var(--primary); transform: translateY(-3px); }
 
 /* ================= SECTIONS GENERAL ================= */
-section {
-  padding: 80px 5%;
-}
+section { padding: 100px 5%; }
 
 .section-title {
-  text-align: center;
-  font-size: 2.5rem;
-  color: var(--primary);
-  margin-bottom: 15px;
-  font-weight: 700;
+  text-align: center; font-size: 2.5rem; color: var(--primary);
+  margin-bottom: 10px; font-weight: 800; text-transform: uppercase;
 }
 
 .section-subtitle {
-  text-align: center;
-  color: #666;
-  margin-bottom: 50px;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
+  text-align: center; color: var(--text-light); margin-bottom: 60px;
+  max-width: 700px; margin-left: auto; margin-right: auto;
+  position: relative; padding-bottom: 20px;
 }
 
-/* ================= LEGACY / FOUNDERS SECTION ================= */
-.legacy-section {
-  background: #fff;
+.section-subtitle::after {
+  content: ''; display: block; width: 60px; height: 3px;
+  background: var(--accent); margin: 20px auto 0;
 }
 
+/* ================= LEGACY SECTION ================= */
+.legacy-section { background: #fff; }
 .legacy-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 50px;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
+  display: flex; flex-wrap: wrap; gap: 60px;
+  align-items: center; max-width: 1200px; margin: 0 auto;
 }
+.legacy-text { flex: 1 1 500px; }
+.legacy-text h3 { color: var(--accent); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 10px;}
+.legacy-text h2 { font-size: 2.5rem; color: #222; margin-bottom: 25px; line-height: 1.2; }
+.legacy-text p { margin-bottom: 20px; font-size: 1.05rem; color: #555; }
 
-.legacy-text {
-  flex: 1 1 500px;
-}
-
-.legacy-text h2 {
-  font-size: 2.2rem;
-  color: var(--primary);
-  margin-bottom: 20px;
-}
-
-.legacy-text p {
-  margin-bottom: 15px;
-  font-size: 1.1rem;
-  color: #444;
-}
-
-.founders-grid {
-  flex: 1 1 500px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-
-.founder-card {
-  position: relative;
-  text-align: center;
-}
-
+.founders-grid { flex: 1 1 500px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+.founder-card { text-align: center; }
 .founder-img-wrapper {
-  width: 100%;
-  aspect-ratio: 3/4; /* Vertical portrait ratio */
-  overflow: hidden;
-  border-radius: 10px;
-  box-shadow: 10px 10px 0px var(--accent); /* Stylish border */
-  margin-bottom: 15px;
+  width: 100%; aspect-ratio: 3/4; overflow: hidden;
+  border-radius: 20px; box-shadow: var(--shadow-soft);
+  margin-bottom: 20px; position: relative;
 }
-
-.founder-img-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s;
+.founder-img-wrapper::before {
+  content: ''; position: absolute; inset: 0; 
+  border: 1px solid rgba(0,0,0,0.1); border-radius: 20px; z-index: 1;
 }
-
-.founder-card:hover img {
-  transform: scale(1.05);
-}
-
-.founder-name {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--primary-dark);
-}
-
-.founder-role {
-  font-size: 0.9rem;
-  color: #666;
-  font-style: italic;
-}
+.founder-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+.founder-card:hover img { transform: scale(1.05); }
+.founder-name { font-size: 1.1rem; font-weight: 700; color: #333; margin-top: 10px; }
+.founder-role { font-size: 0.9rem; color: var(--primary); font-weight: 600; }
 
 /* ================= STATS STRIP ================= */
 .stats-strip {
-  background: var(--primary-dark);
-  color: #fff;
-  padding: 50px 5%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 30px;
-  text-align: center;
+  background: var(--bg-light); color: #333; padding: 80px 5%;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px; text-align: center; border-radius: 20px;
+  max-width: 1300px; margin: 0 auto 50px;
 }
 
-.stat-number {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: var(--accent);
-  display: block;
+.stat-item {
+  display: flex; flex-direction: column; align-items: center;
 }
 
-.stat-label {
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  opacity: 0.9;
+.stat-number { 
+  font-size: 3.5rem; font-weight: 800; color: var(--primary); 
+  display: block; margin-bottom: 10px; line-height: 1;
+}
+
+.stat-label { 
+  font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; 
+  color: #666; font-weight: 700; 
 }
 
 /* ================= PRODUCTS ================= */
 .product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px; max-width: 1200px; margin: 0 auto;
 }
-
 .product-card {
-  background: #fff;
-  padding: 40px 30px;
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-  transition: transform 0.3s;
-  border-top: 5px solid transparent;
+  background: #fff; padding: 40px; border-radius: 20px;
+  box-shadow: var(--shadow-soft); transition: all 0.4s ease;
+  border: 1px solid #eee; position: relative; overflow: hidden;
 }
-
-.product-card:hover {
-  transform: translateY(-10px);
-  border-top: 5px solid var(--accent);
+.product-card::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
+  background: var(--primary); transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
 }
-
-.product-card h3 {
-  font-size: 1.5rem;
-  color: var(--primary);
-  margin-bottom: 10px;
-}
-
-.product-card a {
-  display: inline-block;
-  margin-top: 15px;
-  color: var(--primary);
-  font-weight: 700;
-  text-decoration: none;
-}
+.product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 50px rgba(0,0,0,0.12); }
+.product-card:hover::before { transform: scaleX(1); }
+.product-card h3 { font-size: 1.6rem; color: #222; margin-bottom: 15px; }
+.product-card p { color: #666; margin-bottom: 25px; }
+.product-card a { color: var(--primary); font-weight: 700; display: inline-flex; align-items: center; gap: 5px; }
+.product-card a:hover { gap: 10px; }
 
 /* ================= WHY US ================= */
-.why-section {
-  background: #fdf7f7;
-}
-
+.why-section { background: var(--bg-light); }
 .why-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px; max-width: 1200px; margin: 0 auto;
 }
-
 .why-card {
-  background: #fff;
-  padding: 30px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-  transition: 0.3s;
+  background: #fff; padding: 40px 30px; border-radius: 15px;
+  text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+  transition: 0.3s; border: 1px solid rgba(0,0,0,0.05);
 }
-
 .why-card:hover {
-  background: var(--primary);
-  color: #fff;
-  transform: translateY(-5px);
+  background: var(--primary); color: #fff; transform: translateY(-5px);
 }
+.why-card h4 { font-size: 1.3rem; font-weight: 700; margin-bottom: 15px; color: var(--primary); }
+.why-card p { color: #666; }
+.why-card:hover h4, .why-card:hover p { color: #fff; }
 
-.why-card h4 {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-/* ================= FOOTER ================= */
-footer {
-  background: #1a1a1a;
-  color: #999;
-  text-align: center;
-  padding: 20px;
-}
-footer strong { color: #fff; }
-
-/* ================= MOBILE NAV ================= */
-.mobile-nav {
-  display: none;
-  position: fixed;
-  top: 60px;
-  left: 0;
-  width: 100%;
-  background: var(--primary-dark);
-  z-index: 1999;
-  padding-bottom: 20px;
-}
-
-.mobile-nav a {
-  display: block;
-  padding: 15px 20px;
-  color: #fff;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-/* ================= MEDIA QUERIES ================= */
-@keyframes slideFade {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@media(max-width: 768px) {
-  .pro-nav { display: none; }
-  .menu-btn { display: block; }
-  .hero-title { font-size: 2.2rem; }
-  .legacy-container { flex-direction: column-reverse; }
-  .founders-grid { width: 100%; }
-}
+/* ================= LOADING SCREEN ================= */
 #loading-screen {
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at center, #4d0000 0%, #200000 100%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10000;
-  transition: clip-path 1s cubic-bezier(0.77, 0, 0.175, 1);
+  position: fixed; inset: 0; background: #fff;
+  display: flex; justify-content: center; align-items: center;
+  z-index: 10000; transition: clip-path 1s cubic-bezier(0.77, 0, 0.175, 1);
 }
-
-.loader-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.logo-container {
-  position: relative;
-  width: 150px; /* Adjust based on your logo shape */
-  margin-bottom: 20px;
-}
-
-.main-logo {
-  width: 100%;
-  filter: grayscale(1) brightness(2); /* Makes logo white for the "empty" look */
-  opacity: 0.2;
-}
-
-/* This creates the filling effect */
-.liquid-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  
-  filter: drop-shadow(0 0 10px var(--accent));
-  animation: fillUp 3s infinite ease-in-out;
-  clip-path: inset(100% 0 0 0); /* Starts empty */
-}
-
+.loader-wrapper { display: flex; flex-direction: column; align-items: center; }
 .brand-reveal {
-  font-family: 'Montserrat', sans-serif;
-  color: #fff;
-  font-size: 1.8rem;
-  font-weight: 800;
-  letter-spacing: 8px;
-  margin-top: 10px;
+  font-family: 'Montserrat', sans-serif; color: var(--primary);
+  font-size: 2rem; font-weight: 800; letter-spacing: 8px; margin-top: 20px;
 }
-
-.letter {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(10px);
-  animation: letterFade 0.5s forwards;
-}
-
-/* Staggered animation for letters */
+.letter { display: inline-block; opacity: 0; transform: translateY(10px); animation: letterFade 0.5s forwards; }
 .letter:nth-child(1) { animation-delay: 0.1s; }
 .letter:nth-child(2) { animation-delay: 0.2s; }
 .letter:nth-child(3) { animation-delay: 0.3s; }
@@ -476,145 +370,94 @@ footer strong { color: #fff; }
 .letter:nth-child(5) { animation-delay: 0.5s; }
 .letter:nth-child(6) { animation-delay: 0.6s; }
 .letter:nth-child(7) { animation-delay: 0.7s; }
+.loading-status { color: var(--accent); font-size: 0.7rem; letter-spacing: 3px; margin-top: 15px; opacity: 0.8; }
+@keyframes letterFade { to { opacity: 1; transform: translateY(0); } }
+.loader-hidden { clip-path: circle(0% at 50% 50%); }
 
-.loading-status {
-  color: var(--accent);
-  font-size: 0.7rem;
-  letter-spacing: 3px;
-  margin-top: 15px;
-  opacity: 0.6;
-}
-
-/* ANIMATIONS */
-@keyframes fillUp {
-  0% { clip-path: inset(100% 0 0 0); }
-  50% { clip-path: inset(0% 0 0 0); }
-  100% { clip-path: inset(0% 0 100% 0); }
-}
-
-@keyframes letterFade {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Exit Animation */
-.loader-hidden {
-  clip-path: circle(0% at 50% 50%); /* Sophisticated circular closing exit */
-}
 /* ================= PRE FOOTER ================= */
-.pre-footer {
-  background: #2b0b0b;
-  color: #ddd;
-  padding: 70px 8% 40px;
-}
-
+.pre-footer { background: #f4f4f4; padding: 80px 8% 40px; border-top: 1px solid #eee; }
 .pf-container {
-  max-width: 1200px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 40px;
+  max-width: 1200px; margin: auto; display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 50px;
+}
+.pf-col h4 { color: var(--primary); font-size: 16px; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+.pf-col p { font-size: 14px; line-height: 1.8; color: #555; }
+.pf-col ul { list-style: none; }
+.pf-col ul li { margin-bottom: 12px; }
+.pf-col ul li a { color: #666; font-size: 14px; transition: 0.3s; }
+.pf-col ul li a:hover { color: var(--primary); padding-left: 6px; }
+.pf-col i { margin-right: 10px; color: var(--primary); }
+
+/* FOOTER */
+footer { background: var(--primary); color: rgba(255,255,255,0.8); text-align: center; padding: 25px; font-size: 0.9rem; }
+
+/* ================= MEDIA QUERIES (MOBILE) ================= */
+@keyframes slideFade { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+@media(max-width: 900px) {
+  .hero-title { font-size: 2.8rem; }
+  .section-title { font-size: 2rem; }
 }
 
-.pf-col h4 {
-  color: var(--accent);
-  font-size: 15px;
-  margin-bottom: 18px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
+@media(max-width: 768px) {
+  :root { --nav-height: 70px; }
+  
+  /* Mobile Header Logic */
+  .pro-nav { display: none; } /* Hide Desktop Nav */
+  .menu-btn { display: block; } /* Show Hamburger */
+  .brand-text { display: none; } /* Hide Text Name */
+  
+  /* Logo Adjustments for mobile */
+  .logo-img { height: 60px; } /* Slightly smaller than desktop but still prominent */
 
-.pf-col p {
-  font-size: 14px;
-  line-height: 1.7;
-  color: #ccc;
-}
-
-.pf-col ul {
-  list-style: none;
-}
-
-.pf-col ul li {
-  margin-bottom: 12px;
-}
-
-.pf-col ul li a {
-  color: #bbb;
-  text-decoration: none;
-  font-size: 14px;
-  transition: 0.3s;
-}
-
-.pf-col ul li a:hover {
-  color: #fff;
-  padding-left: 6px;
-}
-
-.pf-col i {
-  margin-right: 8px;
-  color: var(--accent);
-}
-
-/* TRUST STRIP */
-.pf-bottom {
-  margin-top: 50px;
-  padding-top: 25px;
-  border-top: 1px solid rgba(255,255,255,0.15);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  font-size: 13px;
-  color: #bbb;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-  .pre-footer {
-    padding: 50px 20px 30px;
-  }
-
-  .pf-bottom {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-.navbar a:hover, .navbar a.active {
-  color: #fff;
+  .legacy-container { flex-direction: column-reverse; }
+  .hero-content-pro { padding-left: 20px; padding-right: 20px; text-align: center; }
+  .hero-subtitle { border-left: none; padding-left: 0; }
+  .pf-container { gap: 30px; }
 }
 </style>
 </head>
 
 <body>
+
 <div id="loading-screen">
   <div class="loader-wrapper">
-    <div class="logo-container">
-      <div class="liquid-overlay"></div>
-    </div>
-    
+    <i class="fas fa-flask fa-3x" style="color: var(--primary); margin-bottom: 15px;"></i>
     <div class="brand-reveal">
       <span class="letter">S</span><span class="letter">W</span><span class="letter">A</span><span class="letter">S</span><span class="letter">T</span><span class="letter">I</span><span class="letter">K</span> 
     </div>
-    <div class="loading-status" style="color: gold;">FORMULATING QUALITY...</div>
+    <div class="loading-status">FORMULATING QUALITY...</div>
   </div>
 </div>
+
 <header class="pro-header">
   <div class="header-left">
-    <span class="brand-name">Swastik Chemical (India)</span>
+    <a href="swastikchemical.html">
+        <img src="logo1.png.png" alt="Swastik Logo" class="logo-img">
+    </a>
+    <span class="brand-text">Swastik Chemical</span>
   </div>
+
   <nav class="pro-nav">
     <a href="swastikchemical.html" class="active">Home</a>
     <a href="about.html">About Us</a>
     <a href="products.html">Products</a>
     <a href="contact.html">Contact</a>
   </nav>
-  <button class="menu-btn" id="menuBtn">☰</button>
-  <nav class="mobile-nav" id="mobileNav">
-    <a href="swastikchemical.html" style="background: #aa0202d9;">Home</a>
-    <a href="about.html">About Us</a>
-    <a href="products.html">Products</a>
-    <a href="contact.html">Contact</a>
-  </nav>
+
+  <button class="menu-btn" id="menuBtn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </header>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="swastikchemical.html" onclick="toggleMenu()">Home</a>
+  <a href="about.html" onclick="toggleMenu()">About Us</a>
+  <a href="products.html" onclick="toggleMenu()">Products</a>
+  <a href="contact.html" onclick="toggleMenu()">Contact</a>
+</nav>
 
 <section class="hero-pro">
   <div class="hero-media">
@@ -622,9 +465,6 @@ footer strong { color: #fff; }
       <source src="9373590-hd_1920_1080_25fps.mp4" type="video/mp4">
     </video>
     <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1920&q=80" class="hero-slide" alt="Lab">
-    <img src="10.jpg" class="hero-slide" alt="Lab">
-    <img src="20.jpg" class="hero-slide" alt="Lab">
-    <img src="30.jpg" class="hero-slide" alt="Lab">
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content-pro">
@@ -660,7 +500,6 @@ footer strong { color: #fff; }
         <div class="founder-name">Late Shri. Kishor Lalji Thakkar</div>
         <div class="founder-role">Founder</div>
       </div>
-      
       <div class="founder-card">
         <div class="founder-img-wrapper">
           <img src="founder.jpg.jpeg" alt="Mr. Bharat Thakkar">
@@ -672,42 +511,46 @@ footer strong { color: #fff; }
   </div>
 </section>
 
-<div class="stats-strip">
-  <div>
-    <span class="stat-number">25+</span>
+<div class="stats-strip" id="statsSection">
+  <div class="stat-item">
+    <span class="stat-number" data-target="25" data-suffix="+">0</span>
     <span class="stat-label">Years Experience</span>
   </div>
-  <div>
-    <span class="stat-number">500+</span>
+  <div class="stat-item">
+    <span class="stat-number" data-target="500" data-suffix="+">0</span>
     <span class="stat-label">Clients Served</span>
   </div>
-  <div>
-    <span class="stat-number">100%</span>
+  <div class="stat-item">
+    <span class="stat-number" data-target="100" data-suffix="%">0</span>
     <span class="stat-label">Safety Compliance</span>
   </div>
-  <div>
-    <span class="stat-number">Pan-India</span>
+  <div class="stat-item">
+    <span class="stat-number" data-target="Pan-India">Pan-India</span>
     <span class="stat-label">Supply Network</span>
   </div>
 </div>
 
 <section class="why-section">
   <h2 class="section-title">Why Swastik Chemical?</h2>
-  <p class="section-subtitle">We don't just supply chemicals; we supply reliability.</p>
+  <p class="section-subtitle">We don't just supply chemicals; we supply reliability and technical excellence.</p>
   <div class="why-grid">
     <div class="why-card">
+      <i class="fas fa-flask fa-2x" style="color:var(--primary); margin-bottom:15px;"></i>
       <h4>Industry Expertise</h4>
       <p>Decades of specialized knowledge in organic peroxides.</p>
     </div>
     <div class="why-card">
+      <i class="fas fa-check-circle fa-2x" style="color:var(--primary); margin-bottom:15px;"></i>
       <h4>Strict Quality Control</h4>
       <p>Every batch is tested to meet rigorous safety standards.</p>
     </div>
     <div class="why-card">
+      <i class="fas fa-shipping-fast fa-2x" style="color:var(--primary); margin-bottom:15px;"></i>
       <h4>Reliable Logistics</h4>
       <p>Timely delivery through an optimized supply chain.</p>
     </div>
     <div class="why-card">
+      <i class="fas fa-users-cog fa-2x" style="color:var(--primary); margin-bottom:15px;"></i>
       <h4>Technical Support</h4>
       <p>Expert guidance on product application and handling.</p>
     </div>
@@ -721,26 +564,23 @@ footer strong { color: #fff; }
     <div class="product-card">
       <h3>Benzoyl Peroxides</h3>
       <p>High-performance initiators for polymer applications and industrial curing processes.</p>
-      <a href="product.html">View Details →</a>
+      <a href="#">View Details <i class="fas fa-arrow-right"></i></a>
     </div>
     <div class="product-card">
       <h3>MEK Peroxides</h3>
       <p>Reliable curing solutions offering consistent quality for the composites industry.</p>
-      <a href="product.html">View Details →</a>
+      <a href="#">View Details <i class="fas fa-arrow-right"></i></a>
     </div>
     <div class="product-card">
       <h3>Tertiary Butyl Range</h3>
       <p>Advanced peroxide solutions engineered for specific high-temperature applications.</p>
-      <a href="product.html">View Details →</a>
+      <a href="#">View Details <i class="fas fa-arrow-right"></i></a>
     </div>
   </div>
 </section>
 
-   <!-- ================= PRE FOOTER ================= -->
-<section class="pre-footer" style="background-color: #a52a2a;">
+<section class="pre-footer">
   <div class="pf-container">
-
-    <!-- ABOUT -->
     <div class="pf-col">
       <h4>Swastik Chemical India</h4>
       <p>
@@ -748,8 +588,6 @@ footer strong { color: #fff; }
         Trusted by manufacturers, laboratories, and exporters across India.
       </p>
     </div>
-
-    <!-- QUICK LINKS -->
     <div class="pf-col">
       <h4>Quick Links</h4>
       <ul>
@@ -759,8 +597,6 @@ footer strong { color: #fff; }
         <li><a href="contact.html">Contact Us</a></li>
       </ul>
     </div>
-
-    <!-- PRODUCTS -->
     <div class="pf-col">
       <h4>Product Segments</h4>
       <ul>
@@ -770,80 +606,104 @@ footer strong { color: #fff; }
         <li><a href="#">Custom Bulk Supply</a></li>
       </ul>
     </div>
-
-    <!-- CONTACT -->
     <div class="pf-col">
       <h4>Support & Contact</h4>
-      <p>
-        <i class="fas fa-map-marker-alt"></i>
-        35th Rane Compound, H.F. Society, Natwar Nagar, Road No. 5, Andheri East Mumbai 400060.
-        Maharastra, India.
-      </p>
-      <p>
-        <i class="fas fa-phone-alt"></i>
-        +91 98212 48219
-      </p>
-      <p>
-        <i class="fas fa-envelope"></i>
-        swastikchemindia@gmail.com
-      </p>
+      <p><i class="fas fa-map-marker-alt"></i> 35th Rane Compound, H.F. Society, Andheri East Mumbai 400060.</p>
+      <p><i class="fas fa-phone-alt"></i> +91 98212 48219</p>
+      <p><i class="fas fa-envelope"></i> swastikchemindia@gmail.com</p>
     </div>
-
   </div>
 </section>
 
-    <footer class="footer" style="background-color: #800000;">
-        <p>&copy; 2025 Swastik Chemical India. All Rights Reserved.</p>
-    </footer>
+<footer>
+  <p>&copy; 2025 Swastik Chemical India. All Rights Reserved.</p>
+</footer>
 
 <script>
+  // Loading Screen Logic
   window.addEventListener("load", function() {
     const loader = document.getElementById("loading-screen");
-    
-    // We wait 2.5 seconds to let the "Filling" animation finish its first cycle
     setTimeout(() => {
       loader.classList.add("loader-hidden");
-      
-      // Remove from DOM after transition so it doesn't block clicks
-      setTimeout(() => {
-        loader.style.display = "none";
-      }, 1000);
-    }, 2500);
+      setTimeout(() => { loader.style.display = "none"; }, 1000);
+    }, 2000);
   });
-</script>
-<script>
-  // Mobile Menu Toggle
+
+  // Mobile Menu Toggle Logic
   const menuBtn = document.getElementById("menuBtn");
   const mobileNav = document.getElementById("mobileNav");
 
-  menuBtn.addEventListener("click", () => {
-    mobileNav.style.display = (mobileNav.style.display === "block") ? "none" : "block";
-  });
+  function toggleMenu() {
+    // Toggle Active Classes
+    menuBtn.classList.toggle("open");
+    mobileNav.classList.toggle("active");
+  }
 
-  // Hero Slider Logic (Simple fade)
+  menuBtn.addEventListener("click", toggleMenu);
+
+  // Simple Hero Slider
   const slides = document.querySelectorAll(".hero-slide");
   let current = 0;
-  
   if(slides.length > 1) {
     setInterval(() => {
       slides[current].classList.remove("active");
+      if (slides[current].tagName === "VIDEO") slides[current].pause();
       
-      // Handle Video Pause
-      if (slides[current].tagName === "VIDEO") {
-        slides[current].pause();
-      }
-
       current = (current + 1) % slides.length;
+      
       slides[current].classList.add("active");
-
-      // Handle Video Play
-      if (slides[current].tagName === "VIDEO") {
-        slides[current].play();
-      }
+      if (slides[current].tagName === "VIDEO") slides[current].play();
     }, 6000); 
   }
+
+  // ==========================================
+  // COUNTING ANIMATION SCRIPT
+  // ==========================================
+  const statsSection = document.getElementById('statsSection');
+  const stats = document.querySelectorAll('.stat-number');
+  let started = false; // Ensures animation runs only once
+
+  const startCount = (el) => {
+    const target = el.getAttribute('data-target');
+    const suffix = el.getAttribute('data-suffix') || '';
+    
+    // If target is not a number (like "Pan-India"), just display it and exit
+    if(isNaN(target)) {
+        el.innerText = target;
+        return;
+    }
+
+    const targetNum = +target;
+    const speed = 200; // The lower the slower
+    
+    const updateCount = () => {
+        const count = +el.innerText.replace(/\D/g,''); // Get current number
+        const inc = targetNum / speed;
+
+        if (count < targetNum) {
+            el.innerText = Math.ceil(count + inc) + suffix;
+            setTimeout(updateCount, 20); // Control speed of animation
+        } else {
+            el.innerText = targetNum + suffix;
+        }
+    };
+
+    updateCount();
+  };
+
+  // Intersection Observer to trigger animation on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting && !started) {
+            stats.forEach(startCount);
+            started = true;
+        }
+    });
+  }, { threshold: 0.5 }); // Starts when 50% of the section is visible
+
+  observer.observe(statsSection);
+
 </script>
 
 </body>
-
 </html>
