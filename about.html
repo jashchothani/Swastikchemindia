@@ -529,6 +529,501 @@ footer { background: var(--primary); color: rgba(255,255,255,0.8); text-align: c
   window.addEventListener("load", function() {
     const loader = document.getElementById("loading-screen");
     setTimeout(() => {
+      loader.classList.add("loader-hidden  overflow-x: hidden;
+  padding-top: var(--nav-height); 
+}
+
+h1, h2, h3, h4, .nav-link, .btn, .brand-text {
+  font-family: 'Montserrat', sans-serif;
+}
+
+a { text-decoration: none; transition: 0.3s; }
+
+/* ================= HEADER ================= */
+.pro-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  padding: 0 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.98); 
+  backdrop-filter: blur(10px);
+  z-index: 2000;
+  box-shadow: var(--shadow-nav);
+  transition: all 0.3s ease;
+}
+
+.header-left { display: flex; align-items: center; gap: 15px; }
+
+.logo-img { height: 75px; width: auto; display: block; transition: height 0.3s ease; }
+
+.brand-text {
+  font-size: 24px; font-weight: 700; color: var(--primary);
+  letter-spacing: -0.5px; text-transform: uppercase;
+}
+
+.pro-nav { display: flex; align-items: center; }
+.pro-nav a {
+  margin-left: 35px; color: #444; font-weight: 600; font-size: 0.95rem;
+  text-transform: uppercase; position: relative;
+}
+.pro-nav a::after {
+  content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
+  background: var(--primary); transition: width 0.3s;
+}
+.pro-nav a:hover, .pro-nav a.active { color: var(--primary); }
+.pro-nav a:hover::after, .pro-nav a.active::after { width: 100%; }
+
+/* HAMBURGER MENU */
+.menu-btn {
+  display: none; cursor: pointer; background: none; border: none;
+  width: 30px; height: 24px; position: relative; z-index: 2001;
+}
+.menu-btn span {
+  display: block; width: 100%; height: 3px; background-color: var(--primary);
+  position: absolute; border-radius: 2px; transition: all 0.3s ease-in-out;
+}
+.menu-btn span:nth-child(1) { top: 0; }
+.menu-btn span:nth-child(2) { top: 10px; }
+.menu-btn span:nth-child(3) { top: 20px; }
+.menu-btn.open span:nth-child(1) { top: 10px; transform: rotate(45deg); }
+.menu-btn.open span:nth-child(2) { opacity: 0; }
+.menu-btn.open span:nth-child(3) { top: 10px; transform: rotate(-45deg); }
+
+/* MOBILE NAV */
+.mobile-nav {
+  position: fixed; top: -100%; left: 0; width: 100%; height: 100vh;
+  background: #fff; z-index: 1999; display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  transition: top 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+.mobile-nav.active { top: 0; }
+.mobile-nav a {
+  font-size: 1.5rem; color: #333; margin: 15px 0; font-weight: 700;
+  position: relative; opacity: 0; transform: translateY(-20px);
+  transition: 0.3s ease 0.1s;
+}
+.mobile-nav.active a { opacity: 1; transform: translateY(0); }
+.mobile-nav.active a:nth-child(1) { transition-delay: 0.2s; }
+.mobile-nav.active a:nth-child(2) { transition-delay: 0.3s; }
+.mobile-nav.active a:nth-child(3) { transition-delay: 0.4s; }
+.mobile-nav.active a:nth-child(4) { transition-delay: 0.5s; }
+
+/* ================= HERO ================= */
+.about-hero {
+  position: relative; height: 60vh;
+  background: url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat fixed;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+}
+.about-hero::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(77, 0, 0, 0.85), rgba(0, 0, 0, 0.7));
+}
+.about-hero-content {
+  position: relative; z-index: 2; color: #fff; max-width: 900px; padding: 20px;
+  animation: fadeInUp 1.2s ease;
+}
+.about-hero-content h1 {
+  font-size: 3.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 20px; line-height: 1.2;
+}
+.about-hero-content p {
+  font-size: 1.3rem; opacity: 0.9; max-width: 700px; margin: 0 auto;
+}
+.highlight { color: var(--accent); }
+
+/* ================= SECTIONS ================= */
+section { padding: 100px 5%; }
+.section-header { text-align: center; margin-bottom: 60px; }
+.section-title {
+  font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;
+  position: relative; display: inline-block; font-weight: 700;
+}
+.section-title::after {
+  content: ""; display: block; width: 60px; height: 4px;
+  background: var(--accent); margin: 10px auto 0; border-radius: 2px;
+}
+.section-subtitle { color: #666; font-size: 1.1rem; }
+
+/* WHO WE ARE */
+.overview-container {
+  max-width: 1000px; margin: 0 auto; text-align: center;
+  font-size: 1.2rem; color: #444;
+}
+
+/* LEGACY */
+.legacy-section {
+  background: #fff; display: flex; flex-wrap: wrap;
+  align-items: center; gap: 50px; max-width: 1300px; margin: 0 auto;
+}
+.legacy-image-wrapper { flex: 1 1 400px; position: relative; }
+.legacy-image-wrapper img {
+  width: 100%; border-radius: 20px;
+  box-shadow: 20px 20px 0px var(--primary-dark); 
+  transition: transform 0.4s ease;
+}
+.legacy-image-wrapper:hover img { transform: scale(1.02); }
+.legacy-content { flex: 1 1 500px; }
+.legacy-content h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 25px; }
+.legacy-content h3 { font-size: 1rem; color: var(--accent); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
+.legacy-content p { margin-bottom: 20px; font-size: 1.05rem; color: #555; }
+
+/* ================= IMPROVED CORE PURPOSE SECTION (FLIP CARDS) ================= */
+.core-purpose-section {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  position: relative; overflow: hidden;
+}
+/* Decorative Shapes */
+.core-purpose-section::before {
+  content: ''; position: absolute; top: -50px; left: -50px;
+  width: 200px; height: 200px; border: 20px solid rgba(255,255,255,0.05); border-radius: 50%;
+}
+.core-purpose-section::after {
+  content: ''; position: absolute; bottom: -50px; right: -50px;
+  width: 300px; height: 300px; border: 40px solid rgba(255,255,255,0.03); border-radius: 50%;
+}
+
+.purpose-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;
+}
+
+.purpose-card {
+  background-color: transparent; height: 350px; perspective: 1000px;
+}
+.purpose-inner {
+  position: relative; width: 100%; height: 100%; text-align: center;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy Transition */
+  transform-style: preserve-3d; cursor: pointer;
+}
+.purpose-card:hover .purpose-inner { transform: rotateY(180deg); }
+
+.purpose-front, .purpose-back {
+  position: absolute; inset: 0; backface-visibility: hidden;
+  border-radius: 20px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; padding: 40px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+/* FRONT */
+.purpose-front {
+  background: #ffffff; color: var(--primary); border-bottom: 5px solid var(--accent);
+}
+.icon-box {
+  width: 80px; height: 80px; background: rgba(128, 0, 0, 0.08);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  margin-bottom: 25px; transition: 0.3s;
+}
+.icon-box i { font-size: 2rem; color: var(--primary); transition: 0.3s; }
+
+/* Front Hover Effect */
+.purpose-card:hover .icon-box { transform: scale(1.1); background: var(--primary); }
+.purpose-card:hover .icon-box i { color: #fff; }
+
+.purpose-front h3 {
+  font-size: 1.5rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+}
+.click-hint { margin-top: 15px; font-size: 0.8rem; color: #aaa; text-transform: uppercase; letter-spacing: 1px; }
+
+/* BACK */
+.purpose-back {
+  background: linear-gradient(145deg, var(--primary-dark), #2a0000);
+  color: #fff; transform: rotateY(180deg); border: 2px solid var(--accent);
+}
+.purpose-back h3 {
+  color: var(--accent); font-size: 1.2rem; margin-bottom: 15px;
+  text-transform: uppercase; letter-spacing: 2px;
+}
+.purpose-back p { font-size: 1.05rem; line-height: 1.6; opacity: 0.95; }
+
+/* ================= WHY US ================= */
+.grid-cards {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px; max-width: 1200px; margin: 0 auto;
+}
+.card-item {
+  background: #fff; padding: 40px 30px; border-radius: 15px;
+  text-align: center; box-shadow: var(--shadow-soft);
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-top: 4px solid transparent; border: 1px solid #eee;
+}
+.card-item:hover {
+  transform: translateY(-10px); border-top: 4px solid var(--accent);
+  box-shadow: 0 15px 40px rgba(128,0,0,0.15);
+}
+.card-item h4 { font-size: 1.2rem; color: var(--primary); font-weight: 700; margin-bottom: 10px; }
+
+/* ================= LOADER & FOOTER ================= */
+#loading-screen {
+  position: fixed; inset: 0; background: #fff;
+  display: flex; justify-content: center; align-items: center;
+  z-index: 10000; transition: clip-path 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.loader-wrapper { display: flex; flex-direction: column; align-items: center; }
+.brand-reveal {
+  font-family: 'Montserrat', sans-serif; color: var(--primary);
+  font-size: 2rem; font-weight: 800; letter-spacing: 8px; margin-top: 20px;
+}
+.letter { display: inline-block; opacity: 0; transform: translateY(10px); animation: letterFade 0.5s forwards; }
+.letter:nth-child(1) { animation-delay: 0.1s; } .letter:nth-child(2) { animation-delay: 0.2s; }
+.letter:nth-child(3) { animation-delay: 0.3s; } .letter:nth-child(4) { animation-delay: 0.4s; }
+.letter:nth-child(5) { animation-delay: 0.5s; } .letter:nth-child(6) { animation-delay: 0.6s; }
+.letter:nth-child(7) { animation-delay: 0.7s; }
+.loading-status { color: var(--accent); font-size: 0.7rem; letter-spacing: 3px; margin-top: 15px; opacity: 0.8; }
+@keyframes letterFade { to { opacity: 1; transform: translateY(0); } }
+.loader-hidden { clip-path: circle(0% at 50% 50%); }
+
+.pre-footer { background: #f4f4f4; padding: 80px 8% 40px; border-top: 1px solid #eee; }
+.pf-container {
+  max-width: 1200px; margin: auto; display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 50px;
+}
+.pf-col h4 { color: var(--primary); font-size: 16px; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+.pf-col p { font-size: 14px; line-height: 1.8; color: #555; }
+.pf-col ul { list-style: none; }
+.pf-col ul li { margin-bottom: 12px; }
+.pf-col ul li a { color: #666; font-size: 14px; transition: 0.3s; }
+.pf-col ul li a:hover { color: var(--primary); padding-left: 6px; }
+.pf-col i { margin-right: 10px; color: var(--primary); }
+
+footer { background: var(--primary); color: rgba(255,255,255,0.8); text-align: center; padding: 25px; font-size: 0.9rem; }
+
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 768px) {
+  :root { --nav-height: 70px; }
+  .pro-nav { display: none; } 
+  .menu-btn { display: block; }
+  .brand-text { display: none; }
+  .logo-img { height: 60px; }
+  .about-hero-content h1 { font-size: 2.2rem; }
+  .section-title { font-size: 2rem; }
+  .legacy-section { flex-direction: column-reverse; padding: 60px 20px; }
+  .legacy-image-wrapper img { margin-bottom: 20px; }
+  .pf-container { gap: 30px; }
+}
+</style>
+</head>
+
+<body>
+
+<div id="loading-screen">
+  <div class="loader-wrapper">
+    <i class="fas fa-flask fa-3x" style="color: var(--primary); margin-bottom: 15px;"></i>
+    <div class="brand-reveal">
+      <span class="letter">S</span><span class="letter">W</span><span class="letter">A</span><span class="letter">S</span><span class="letter">T</span><span class="letter">I</span><span class="letter">K</span> 
+    </div>
+    <div class="loading-status">FORMULATING QUALITY...</div>
+  </div>
+</div>
+
+<header class="pro-header">
+  <div class="header-left">
+    <a href="swastikchemical.html">
+        <img src="logo1.png.png" alt="Swastik Logo" class="logo-img">
+    </a>
+    <span class="brand-text">Swastik Chemical</span>
+  </div>
+
+  <nav class="pro-nav">
+    <a href="swastikchemical.html">Home</a>
+    <a href="about.html" class="active">About Us</a>
+    <a href="products.html">Products</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <button class="menu-btn" id="menuBtn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="swastikchemical.html" onclick="toggleMenu()">Home</a>
+  <a href="about.html" onclick="toggleMenu()">About Us</a>
+  <a href="products.html" onclick="toggleMenu()">Products</a>
+  <a href="contact.html" onclick="toggleMenu()">Contact</a>
+</nav>
+
+<section class="about-hero">
+  <div class="about-hero-content">
+    <h1>Essential. Responsible. <span class="highlight">Chemistry.</span></h1>
+    <p>
+      Building trust through quality, safety, and a long-term commitment
+      to industrial chemical excellence since 1998.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="section-header">
+    <h2 class="section-title">Who We Are</h2>
+    <p class="section-subtitle">A Tradition of Chemical Excellence</p>
+  </div>
+  <div class="overview-container">
+    <p>
+      Swastik Chemical India is a specialized manufacturer and marketer of
+      <strong>organic peroxides</strong>, serving diverse industrial applications across India.
+      Our foundation is built on integrity, safety, and consistent quality.
+      We have evolved into a focused and reliable partner for the polymer, rubber, coatings, and specialty chemical industries.
+    </p>
+  </div>
+</section>
+
+<section class="legacy-section">
+  <div class="legacy-image-wrapper">
+    <img src="Founder&Owner.png" alt="Founders of Swastik Chemical - Kishore and Bharat Thakkar">
+  </div>
+  
+  <div class="legacy-content">
+    <h3>Our Journey & Legacy</h3>
+    <h2>From Agro to Industrial Innovation</h2>
+    <p>
+      The roots of Swastik Chemical India were planted by the visionary <strong>Kishore Thakkar</strong> (Seated), who originally established the family's reputation in agro-based enterprise. His wisdom and adherence to ethical business practices laid the groundwork for our future.
+    </p>
+    <p>
+      In 1998, under the dynamic leadership of <strong>Bharat Kishore Thakkar</strong> (Standing), the company pivoted into the specialized chemical sector.
+    </p>
+    <p>
+      Today, that blend of traditional values and modern chemical expertise drives every decision we make, ensuring we remain a partner you can trust.
+    </p>
+  </div>
+</section>
+
+<section class="core-purpose-section">
+  <div class="section-header">
+    <h2 class="section-title" style="color:#fff; border-color: rgba(255,255,255,0.3);">Our Core Purpose</h2>
+    <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">Driving Excellence Through Values</p>
+  </div>
+  
+  <div class="purpose-grid">
+    <div class="purpose-card">
+      <div class="purpose-inner">
+        <div class="purpose-front">
+          <div class="icon-box">
+            <i class="fas fa-eye"></i>
+          </div>
+          <h3>Vision</h3>
+          <div class="click-hint">Hover to Flip</div>
+        </div>
+        <div class="purpose-back">
+          <h3>Vision</h3>
+          <p>To be a globally trusted supplier of organic peroxides through continuous innovation, uncompromised safety, and sustainable practices.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="purpose-card">
+      <div class="purpose-inner">
+        <div class="purpose-front">
+          <div class="icon-box">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <h3>Mission</h3>
+          <div class="click-hint">Hover to Flip</div>
+        </div>
+        <div class="purpose-back">
+          <h3>Mission</h3>
+          <p>Delivering consistent, safe, and high-performance chemical solutions while building long-term partnerships with our clients.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="purpose-card">
+      <div class="purpose-inner">
+        <div class="purpose-front">
+          <div class="icon-box">
+            <i class="fas fa-handshake"></i>
+          </div>
+          <h3>Values</h3>
+          <div class="click-hint">Hover to Flip</div>
+        </div>
+        <div class="purpose-back">
+          <h3>Values</h3>
+          <p><strong>Integrity</strong> in every deal.<br><strong>Safety</strong> above all.<br><strong>Quality</strong> without compromise.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section style="background: #fdf7f7;">
+  <div class="section-header">
+    <h2 class="section-title">Why Choose Us</h2>
+  </div>
+  <div class="grid-cards">
+    <div class="card-item">
+      <i class="fas fa-history fa-2x" style="color:var(--primary); margin-bottom:15px;"></i>
+      <h4>25+ Years Experience</h4>
+      <p>Decades of mastery in the chemical supply chain.</p>
+    </div>
+    <div class="card-item">
+      <i class="fas fa-vial fa-2x" style="color:var(--primary); margin-bottom:15px;"></i>
+      <h4>Strict Quality Control</h4>
+      <p>Rigorous testing ensures every batch meets global standards.</p>
+    </div>
+    <div class="card-item">
+      <i class="fas fa-truck fa-2x" style="color:var(--primary); margin-bottom:15px;"></i>
+      <h4>Reliable Logistics</h4>
+      <p>Timely delivery through an optimized supply network.</p>
+    </div>
+    <div class="card-item">
+      <i class="fas fa-headset fa-2x" style="color:var(--primary); margin-bottom:15px;"></i>
+      <h4>Technical Support</h4>
+      <p>Expert guidance on product handling and application.</p>
+    </div>
+  </div>
+</section>
+
+<section class="pre-footer">
+  <div class="pf-container">
+    <div class="pf-col">
+      <h4>Swastik Chemical India</h4>
+      <p>
+        Delivering reliable industrial and specialty chemicals since 1998.
+        Trusted by manufacturers, laboratories, and exporters across India.
+      </p>
+    </div>
+    <div class="pf-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="swastikchemical.html">Home</a></li>
+        <li><a href="about.html">Company Profile</a></li>
+        <li><a href="products.html">Product Range</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="pf-col">
+      <h4>Product Segments</h4>
+      <ul>
+        <li><a href="#">Industrial Chemicals</a></li>
+        <li><a href="#">Laboratory Chemicals</a></li>
+        <li><a href="#">Solvents & Acids</a></li>
+        <li><a href="#">Custom Bulk Supply</a></li>
+      </ul>
+    </div>
+    <div class="pf-col">
+      <h4>Support & Contact</h4>
+      <p><i class="fas fa-map-marker-alt"></i> 35th Rane Compound, H.F. Society, Andheri East Mumbai 400060.</p>
+      <p><i class="fas fa-phone-alt"></i> +91 98212 48219</p>
+      <p><i class="fas fa-envelope"></i> swastikchemindia@gmail.com</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 Swastik Chemical India. All Rights Reserved.</p>
+</footer>
+
+<script>
+  // Loading Screen Logic
+  window.addEventListener("load", function() {
+    const loader = document.getElementById("loading-screen");
+    setTimeout(() => {
       loader.classList.add("loader-hidden");
       setTimeout(() => { loader.style.display = "none"; }, 1000);
     }, 2000);
@@ -1831,6 +2326,7 @@ mobileNav.querySelectorAll("a").forEach(link => {
 </body>
 
 </html>
+
 
 
 
