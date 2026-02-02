@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Catalog - Swastik Chemical India</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+/* ================= VARIABLES ================= */
+:root {
+  --primary: #800000;
+  --primary-dark: #4d0000;
+  --accent: #d4af37;
+  --bg-light: #f8f9fa;
+  --text-dark: #2c2c2c;
+  --card-bg: #ffffff;
+  --shadow: 0 10px 30px rgba(0,0,0,0.08);
+  --shadow-hover: 0 20px 40px rgba(128,0,0,0.15);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+h1, h2, h3, h4, .btn { font-family: 'Montserrat', sans-serif; }
+a { text-decoration: none; }
+
+/* ================= HEADER & NAV ================= */
+.pro-header {
+  position: sticky; top: 0; width: 100%; padding: 15px 5%;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(128, 0, 0, 0.95); backdrop-filter: blur(10px);
+  z-index: 1000; box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+}
+
+.brand-name { font-size: 22px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+
+.pro-nav a {
+  margin-left: 30px; color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.95rem; 
+  transition: 0.3s; position: relative;
+}
+.pro-nav a:hover, .pro-nav a.active { color: var(--accent); }
+.pro-nav a.active::after {
+  content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px; background: var(--accent);
+}
+
+/* HAMBURGER MENU ICON */
+.menu-toggle {
+  display: none; flex-direction: column; gap: 6px; 
+  background: none; border: none; cursor: pointer; padding: 5px;
+}
+.menu-toggle span {
+  display: block; width: 30px; height: 3px; background: #fff; border-radius: 3px;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+/* Cross Animation State */
+.menu-toggle.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+.menu-toggle.active span:nth-child(2) { opacity: 0; transform: translateX(-10px); }
+.menu-toggle.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+/* MOBILE NAV DRAWER */
+.mobile-nav {
+  position: fixed; top: 70px; left: 0; width: 100%; 
+  background: rgba(77, 0, 0, 0.98); backdrop-filter: blur(15px);
+  transform: translateY(-150%); transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 999; display: flex; flex-direction: column; padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.mobile-nav.active { transform: translateY(0); }
+.mobile-nav a {
+  padding: 18px 25px; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-weight: 600; font-size: 1.1rem; opacity: 0; transform: translateX(-20px); transition: 0.4s;
+}
+/* Staggered text reveal in menu */
+.mobile-nav.active a { opacity: 1; transform: translateX(0); }
+.mobile-nav.active a:nth-child(1) { transition-delay: 0.1s; }
+.mobile-nav.active a:nth-child(2) { transition-delay: 0.2s; }
+.mobile-nav.active a:nth-child(3) { transition-delay: 0.3s; }
+.mobile-nav.active a:nth-child(4) { transition-delay: 0.4s; }
+
+/* ================= HERO ================= */
+.page-header {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1629815034672-0129a03986cc?auto=format&fit=crop&w=1920&q=80');
+  background-size: cover; background-position: center; background-attachment: fixed;
+  padding: 100px 5%; text-align: center; color: #fff;
+}
+.page-title { font-size: 3.5rem; font-weight: 800; margin-bottom: 10px; animation: fadeInUp 0.8s ease; }
+.breadcrumb { font-size: 1rem; color: #ddd; animation: fadeInUp 1s ease; }
+.breadcrumb span { color: var(--accent); }
+
+/* ================= FILTERS ================= */
+.filter-container {
+  padding: 30px 5%; background: #fff; 
+  position: sticky; top: 70px; z-index: 800; text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  overflow-x: auto; white-space: nowrap; /* Mobile Horizontal Scroll */
+  -webkit-overflow-scrolling: touch;
+}
+.filter-container::-webkit-scrollbar { height: 4px; }
+.filter-container::-webkit-scrollbar-thumb { background: #ccc; border-radius: 2px; }
+
+.filter-btn {
+  padding: 12px 28px; margin: 0 5px; border: 2px solid #eee; background: transparent;
+  border-radius: 50px; cursor: pointer; font-weight: 700; color: #666; transition: 0.3s;
+  font-family: 'Montserrat', sans-serif; font-size: 0.9rem;
+}
+.filter-btn:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-2px); }
+.filter-btn.active {
+  background: var(--primary); color: #fff; border-color: var(--primary);
+  box-shadow: 0 5px 15px rgba(128,0,0,0.3);
+}
+
+/* ================= CARDS ================= */
+.catalog-section { padding: 60px 5%; min-height: 60vh; }
+
+.product-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 35px; max-width: 1250px; margin: 0 auto;
+}
+
+.product-card {
+  background: var(--card-bg); border-radius: 16px; overflow: hidden;
+  box-shadow: var(--shadow); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column;
+  position: relative; top: 0;
+}
+
+/* Staggered Animation classes added by JS */
+.product-card.animate-in { animation: popIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; opacity: 0; transform: scale(0.9); }
+
+.product-card:hover { 
+  transform: translateY(-12px); 
+  box-shadow: var(--shadow-hover);
+}
+
+.card-header {
+  background: linear-gradient(135deg, #fdfbfb 0%, #f4f4f4 100%); 
+  padding: 25px; border-bottom: 1px solid #eee; position: relative;
+}
+.category-badge {
+  position: absolute; top: 20px; right: 20px; background: rgba(212, 175, 55, 0.15);
+  color: #8a6d00; font-size: 0.75rem; font-weight: 800; padding: 6px 12px; border-radius: 20px;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.product-card h3 { color: var(--primary); font-size: 1.5rem; margin-bottom: 6px; }
+.chemical-formula { color: #888; font-size: 0.95rem; font-family: 'Georgia', serif; font-style: italic; }
+
+.card-body { padding: 25px; flex-grow: 1; }
+.spec-row { 
+  display: flex; justify-content: space-between; margin-bottom: 14px; 
+  font-size: 0.95rem; border-bottom: 1px dashed #eee; padding-bottom: 8px; 
+}
+.spec-label { font-weight: 700; color: #444; }
+.spec-val { color: #666; text-align: right; max-width: 60%; }
+
+.card-footer { padding: 25px; background: #fff; text-align: center; }
+.view-btn {
+  display: inline-block; width: 100%; padding: 14px; 
+  background: #fff; border: 2px solid var(--primary); color: var(--primary);
+  border-radius: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+  font-size: 0.85rem; transition: 0.3s; cursor: pointer; position: relative; overflow: hidden;
+}
+.view-btn:hover { background: var(--primary); color: #fff; }
+
+/* Hide functionality for filters */
+.hide { display: none; }
+
+/* ================= MODAL SYSTEM ================= */
+.modal {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px);
+  z-index: 2000; opacity: 0; pointer-events: none; transition: 0.4s;
+  display: flex; justify-content: center; align-items: center; padding: 20px;
+}
+.modal.active { opacity: 1; pointer-events: auto; }
+
+.modal-content {
+  background: #fff; width: 100%; max-width: 600px; border-radius: 20px;
+  transform: translateY(30px) scale(0.95); transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden; box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+}
+.modal.active .modal-content { transform: translateY(0) scale(1); }
+
+.modal-header {
+  background: var(--primary); color: #fff; padding: 25px; 
+  display: flex; justify-content: space-between; align-items: center;
+}
+.modal-header h2 { font-size: 1.5rem; }
+.modal-close { font-size: 2rem; cursor: pointer; line-height: 0.5; transition: 0.3s; }
+.modal-close:hover { transform: rotate(90deg); color: var(--accent); }
+
+.modal-body { padding: 30px; }
+.modal-body p { margin-bottom: 15px; color: #555; }
+.modal-btn {
+  display: block; width: 100%; padding: 15px; background: var(--accent); color: #000;
+  text-align: center; font-weight: 800; border-radius: 8px; margin-top: 20px;
+  transition: 0.3s;
+}
+.modal-btn:hover { background: #bfa030; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3); }
+
+/* ================= FOOTER ================= */
+.footer { background: #1a1a1a; color: #777; text-align: center; padding: 30px; margin-top: 50px; font-size: 0.9rem; }
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes popIn { to { opacity: 1; transform: scale(1); } }
+
+/* ================= MOBILE MEDIA QUERIES ================= */
+@media(max-width: 768px) {
+  .pro-nav { display: none; } 
+  .menu-toggle { display: flex; }
+  .page-title { font-size: 2.2rem; }
+  .filter-container { top: 60px; padding: 15px 5%; }
+  .product-grid { grid-template-columns: 1fr; } /* Single column on mobile */
+  .spec-row { font-size: 0.9rem; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="pro-header">
+  <div class="brand-name">Swastik Chemical</div>
+  <nav class="pro-nav">
+    <a href="swastikchemical.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="products.html" class="active">Products</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="swastikchemical.html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="products.html">Products</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<header class="page-header">
+  <h1 class="page-title">Our Products</h1>
+  <div class="breadcrumb">Formulating Quality Since 1998</div>
+</header>
+
+<section class="filter-container">
+  <button class="filter-btn active" onclick="filterProducts('all')">All</button>
+  <button class="filter-btn" onclick="filterProducts('peroxides')">Peroxides</button>
+  <button class="filter-btn" onclick="filterProducts('acids')">Acids</button>
+  <button class="filter-btn" onclick="filterProducts('solvents')">Solvents</button>
+</section>
+
+<section class="catalog-section">
+  <div class="product-grid" id="catalog">
+    
+    <div class="product-card peroxides animate-in" style="animation-delay: 0.1s;">
+      <div class="card-header">
+        <span class="category-badge">Peroxide</span>
+        <h3>Sperox BP-75</h3>
+        <span class="chemical-formula">Benzoyl Peroxide 75%</span>
+      </div>
+      <div class="card-body">
+        <div class="spec-row"><span class="spec-label">Form</span><span class="spec-val">White Powder</span></div>
+        <div class="spec-row"><span class="spec-label">Assay</span><span class="spec-val">Min 75%</span></div>
+        <div class="spec-row"><span class="spec-label">Use</span><span class="spec-val">Polymerization</span></div>
+      </div>
+      <div class="card-footer">
+        <button class="view-btn" onclick="openModal('Sperox BP-75', 'High performance polymerization initiator used primarily in acrylic resins and thermoset polyester.', 'Powder')">View More</button>
+      </div>
+    </div>
+
+    <div class="product-card peroxides animate-in" style="animation-delay: 0.2s;">
+      <div class="card-header">
+        <span class="category-badge">Peroxide</span>
+        <h3>Sperox K-7</h3>
+        <span class="chemical-formula">MEKP Standard</span>
+      </div>
+      <div class="card-body">
+        <div class="spec-row"><span class="spec-label">Form</span><span class="spec-val">Clear Liquid</span></div>
+        <div class="spec-row"><span class="spec-label">O₂ Content</span><span class="spec-val">8.8 - 9.0%</span></div>
+        <div class="spec-row"><span class="spec-label">Use</span><span class="spec-val">FRP Curing</span></div>
+      </div>
+      <div class="card-footer">
+        <button class="view-btn" onclick="openModal('Sperox K-7', 'Industry standard Methyl Ethyl Ketone Peroxide for curing unsaturated polyester resins at room temperature.', 'Liquid')">View More</button>
+      </div>
+    </div>
+
+    <div class="product-card acids animate-in" style="animation-delay: 0.3s;">
+      <div class="card-header">
+        <span class="category-badge" style="background:#ddd; color:#333;">Acid</span>
+        <h3>Sulphuric Acid</h3>
+        <span class="chemical-formula">H₂SO₄ (98%)</span>
+      </div>
+      <div class="card-body">
+        <div class="spec-row"><span class="spec-label">Appearance</span><span class="spec-val">Oily Liquid</span></div>
+        <div class="spec-row"><span class="spec-label">Conc.</span><span class="spec-val">98% Industrial</span></div>
+        <div class="spec-row"><span class="spec-label">Use</span><span class="spec-val">Batteries / Fertilizer</span></div>
+      </div>
+      <div class="card-footer">
+        <button class="view-btn" onclick="openModal('Sulphuric Acid', 'Highly corrosive strong mineral acid. Essential for chemical synthesis, fertilizer production, and wastewater processing.', 'Liquid')">View More</button>
+      </div>
+    </div>
+
+    <div class="product-card acids animate-in" style="animation-delay: 0.4s;">
+      <div class="card-header">
+        <span class="category-badge" style="background:#ddd; color:#333;">Acid</span>
+        <h3>Nitric Acid</h3>
+        <span class="chemical-formula">HNO₃</span>
+      </div>
+      <div class="card-body">
+        <div class="spec-row"><span class="spec-label">Appearance</span><span class="spec-val">Pale Yellow</span></div>
+        <div class="spec-row"><span class="spec-label">Conc.</span><span class="spec-val">60% - 70%</span></div>
+        <div class="spec-row"><span class="spec-label">Use</span><span class="spec-val">Metal Cleaning</span></div>
+      </div>
+      <div class="card-footer">
+        <button class="view-btn" onclick="openModal('Nitric Acid', 'A highly corrosive mineral acid. The pure compound is colorless, but older samples tend to acquire a yellow cast due to decomposition.', 'Liquid')">View More</button>
+      </div>
+    </div>
+
+    <div class="product-card solvents animate-in" style="animation-delay: 0.5s;">
+      <div class="card-header">
+        <span class="category-badge" style="background:#cbeefc; color:#005c8a;">Solvent</span>
+        <h3>Iso Propyl Alcohol</h3>
+        <span class="chemical-formula">C₃H₈O (IPA)</span>
+      </div>
+      <div class="card-body">
+        <div class="spec-row"><span class="spec-label">Purity</span><span class="spec-val">99% Min</span></div>
+        <div class="spec-row"><span class="spec-label">Type</span><span class="spec-val">Solvent</span></div>
+        <div class="spec-row"><span class="spec-label">Use</span><span class="spec-val">Cleaning / Pharma</span></div>
+      </div>
+      <div class="card-footer">
+        <button class="view-btn" onclick="openModal('Iso Propyl Alcohol', 'A colorless, flammable chemical compound with a strong odor. Widely used as a solvent and cleaning fluid.', 'Liquid')">View More</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="modal" id="productModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 id="modalTitle">Product Name</h2>
+      <span class="modal-close" onclick="closeModal()">×</span>
+    </div>
+    <div class="modal-body">
+      <p id="modalDesc">Description goes here.</p>
+      <div class="spec-row">
+        <span class="spec-label">Standard Packaging:</span>
+        <span class="spec-val" id="modalPack">Varies</span>
+      </div>
+      <a href="contact.html" class="modal-btn">Request Quote</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>© 2025 Swastik Chemical India. All Rights Reserved.</p>
+</footer>
+
+<script>
+  // === MOBILE MENU LOGIC ===
+  const menuBtn = document.getElementById("menuToggle");
+  const mobileNav = document.getElementById("mobileNav");
+
+  menuBtn.addEventListener("click", () => {
+    menuBtn.classList.toggle("active"); // Triggers the Cross animation
+    mobileNav.classList.toggle("active"); // Slides down the menu
+  });
+
+  // === FILTER ANIMATION LOGIC ===
+  function filterProducts(category) {
+    // 1. Update Buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    // 2. Filter Cards with Delay
+    const cards = document.querySelectorAll('.product-card');
+    let delayCounter = 0;
+
+    cards.forEach(card => {
+      card.style.animation = 'none'; // Reset animation
+      card.offsetHeight; /* Trigger reflow */
+      
+      if (category === 'all' || card.classList.contains(category)) {
+        card.classList.remove('hide');
+        card.style.animation = `popIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards`;
+        card.style.animationDelay = `${delayCounter * 0.1}s`;
+        delayCounter++;
+      } else {
+        card.classList.add('hide');
+      }
+    });
+  }
+
+  // === MODAL LOGIC ===
+  const modal = document.getElementById("productModal");
+  const mTitle = document.getElementById("modalTitle");
+  const mDesc = document.getElementById("modalDesc");
+  const mPack = document.getElementById("modalPack");
+
+  function openModal(name, desc, form) {
+    mTitle.textContent = name;
+    mDesc.textContent = desc;
+    mPack.textContent = form === 'Liquid' ? '30kg / 50kg Carboys' : '20kg / 25kg Cartons';
+    modal.classList.add("active");
+  }
+
+  function closeModal() {
+    modal.classList.remove("active");
+  }
+
+  // Close on outside click
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      closeModal();
+    }
+  }
+</script>
+
+</body>
+</html>
